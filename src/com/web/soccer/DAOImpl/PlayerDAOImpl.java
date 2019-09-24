@@ -48,23 +48,7 @@ public class PlayerDAOImpl implements PlayerDAO{
     }
 	@Override
 	public List<PlayerBean> selectByTeamIdPosition() {
-			List<PlayerBean> player = new ArrayList<PlayerBean>();
-			try {
-				String sql = "SELECT *\r\n" + 
-						"FROM PLAYER\r\n" + 
-						"WHERE TEAM_ID LIKE 'K02'\r\n" + 
-						"    AND POSITION LIKE 'GK'";
-				PreparedStatement stmt = DateBaseFactory
-						.createDataBase("oracle",Constant.USERNAME,Constant.PASSWORD)
-						.getConnection()
-						.prepareStatement(sql);
-				ResultSet result = stmt.executeQuery();
-				while(result.next()) {
-					
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+
 		return null;
 	}
 	@Override
