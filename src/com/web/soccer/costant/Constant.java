@@ -11,5 +11,7 @@ public class Constant {
 			H2_URL =" jdbc:H2db://localhost:3306",
 			USERNAME = "c##oracle",
 			PASSWORD = "oracle",
-			VENDOR = "oracle";
+			VENDOR = "oracle"
+			//올려졌냐?
+			;
 }
