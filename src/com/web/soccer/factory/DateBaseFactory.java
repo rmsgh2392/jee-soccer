@@ -1,26 +1,27 @@
 package com.web.soccer.factory;
 
 import com.web.soccer.costant.Constant;
+import com.web.soccer.enums.DB;
 
 public class DateBaseFactory {
 	
 	public static DataBase createDataBase(String vendor) {
 		DataBase database = null;
-			
 		
-		switch (vendor) {
-		case "oracle":
+		
+		switch (DB.valueOf(vendor.toUpperCase())) {
+		case ORACLE:
 			System.out.println("오라클 케이스 진입");
 			database = new Oracle();
 			break;
-		case "mariadb":
+		case MARIA:
 			database = new MariaDb();
 			break;
-		case "mysql":
+		case MYSQL:
 			break;
-		case "h2":
+		case H2 :
 			break;
-		case "db2":
+		case DB2 :
 			break;
 			
 		}	

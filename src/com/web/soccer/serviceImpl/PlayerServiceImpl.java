@@ -9,28 +9,31 @@ import com.web.soccer.domains.PlayerBean;
 import com.web.soccer.services.PlayerService;
 
 public class PlayerServiceImpl implements PlayerService{
-//	private PlayerDAO dao;
-//	private List<PlayerBean> players;
-//	public PlayerServiceImpl() {
-//		dao = new PlayerDAOImpl();
-//		players = new ArrayList<>();
-//	}
-	private static PlayerServiceImpl instance = new PlayerServiceImpl();
+		private static PlayerServiceImpl instance = new PlayerServiceImpl();
 	
-	public static PlayerServiceImpl getInstance() {
-		return instance;
+		public static PlayerServiceImpl getInstance() {
+			return instance;
+		}
+		private PlayerServiceImpl() {}
+		public void show() {
+			System.out.println("싱글톤 하이");
+		}
+	@Override
+	public PlayerBean login(PlayerBean param) {
+		System.out.println("***6.playerServiceImpl의 login 들어옴");
+		System.out.println(String.format("param값 출력 :%s,%s"
+				,param.getPlayerId()
+				,param.getSolar()));
+		return PlayerDAOImpl.getInstance().selectByPlayerIdSolar(param);
 	}
-	private PlayerServiceImpl() {}
 		
-	
 	@Override
 	public List<String> findPositions() {
-		
 		return PlayerDAOImpl.getInstance().selectPositions();
 	}
 	@Override
 	public List<PlayerBean> findByTeamIdPosition(PlayerBean param) {
-		List<PlayerBean> players = PlayerDAOImpl.getInstance().selectByTeamIdPosition();
+		List<PlayerBean> players = PlayerDAOImpl.getInstance().selectByTeamIdPosition(param);
 		return players;
 	}
 	@Override
