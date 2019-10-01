@@ -29,8 +29,28 @@ public class FacadeController extends HttpServlet {
 				  	? request.getContextPath() 
 				  			: request.getContextPath()+"/resources/"+r.toString().toLowerCase());
 		  
-		  
 		}
+		System.out.println(request.getParameter("page"));
+		if(request.getParameter("page")==null) {
+			request.setAttribute("page","login");
+		}else {
+			request.setAttribute("page",request.getParameter("page"));
+		}
+		
+	
+
+		
+		 request
+		 .getRequestDispatcher(String.format(Constant.HOME_PATH,
+				 request.getServletPath().substring(1,request.getServletPath().indexOf(".")),"main"))
+		 .forward(request, response);
+	
+		
+		
+		
+	}
+
+
 //		for(Resources r : Resources.values()) {
 //			System.out.println(">>>" +r.toString().toLowerCase());
 //			String t = "";
@@ -41,16 +61,5 @@ public class FacadeController extends HttpServlet {
 //			}
 //			System.out.println("t :" +t);
 //		}
-		 request
-		 .getRequestDispatcher(String.format(Constant.HOME_PATH,
-				 request.getServletPath().substring(1,request.getServletPath().indexOf(".")),"login"))
-		 .forward(request, response);
-	
-		
-		
-		
-	}
-
-
 
 }

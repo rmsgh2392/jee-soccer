@@ -1,16 +1,10 @@
 var app = (()=>{
 	return{
 		init : (ctx)=>{
-			playerService.login();
-			$('#a_back').click(()=>{
-				alert('조인화면 나옴');
-				location.assign(ctx+'/player.do?action=move&page=login');
-			});
-			$('#a_create').click(()=>{
-				alert('회원가입 화면으로 이동');
-				location.assign(ctx+'/player.do?action=move&page=join');
-				
-			});
+			playerService.login(ctx);
+			playerService.join(ctx);
+			playerService.moveJoin(ctx);
+			playerService.backJoin(ctx);
 			
 		}
 	};
@@ -40,18 +34,41 @@ var player = (()=>{
 
 var playerService=(()=>{
 	return{
-		login : ()=>{
+		login : (ctx)=>{
 			$('#login_button').click(()=>{
 				if($('#id').val()==='' || $('#pw').val()===''){
-					alert('필수 값이 없습니다.');
+					alert('값이 없음');
 				}else{
-					alert('입력한 아이디 값::'+$('#id').val());
-					alert('입력한 비밀번호 값 ::'+$('#pw').val());
-					$('#login_form').attr('action','/jee-soccer/player.do');
+					alert('입력한 아이디'+$('#id').val());
+					$('#login_form').attr('action',ctx+'/player.do');
 					$('#login_form').submit();
 				}
 				
 			
+			});
+		},
+		join : (ctx)=>{
+			$('#join_button').click(()=>{
+					alert('도메인 명'+ctx);
+					if($('#join_id').val()==='' || $('#join_pw').val()===''){
+						alert('필수 값이 없음');
+					}else{
+						$('#join_form').attr('action',ctx+'/player.do');
+						$('#join_form').submit();
+						
+						
+					}
+			});
+		},
+		moveJoin : (ctx)=>{
+			$('#a_create').click(()=>{
+				location.assign(ctx+'/facade.do?action=move&page=join');
+				
+			});
+		},
+		backJoin : (ctx)=>{
+			$('#a_back').click(()=>{
+				location.assign(ctx+'/facade.do?action=move&page=login');
 			});
 		}
 	};

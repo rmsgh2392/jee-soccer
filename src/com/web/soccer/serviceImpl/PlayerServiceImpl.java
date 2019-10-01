@@ -49,6 +49,10 @@ public class PlayerServiceImpl implements PlayerService{
 //		return players;
 		return null;
 		}
+	@Override
+	public boolean join(PlayerBean param) {
+		return PlayerDAOImpl.getInstance().insertPlayer(param);
+	}
 	
 	
 	

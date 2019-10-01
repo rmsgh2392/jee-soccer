@@ -133,6 +133,23 @@ public  class PlayerDAOImpl implements PlayerDAO{
 		}
 		return list;
 	}
-	
-	
+	@Override
+	public boolean insertPlayer(PlayerBean param) {
+		boolean result = false;
+		String sql = "INSERT INTO PLAYER (PLAYER_ID,SOLAR,TEAM_ID,PLAYER_NAME) \n" + 
+				"VALUES(?, ?,'K03','박근호')";
+		try {
+			PreparedStatement pstmt = DateBaseFactory.createDataBase(String.valueOf(DB.ORACLE))
+										.getConnection()
+											.prepareStatement(sql);
+			pstmt.setString(1,param.getPlayerId());
+			pstmt.setString(2,param.getSolar());
+			int rs  = pstmt.executeUpdate();
+			result = (rs == 1);//삼항연산자는 불린 타입에서는 삭제가능 --<
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

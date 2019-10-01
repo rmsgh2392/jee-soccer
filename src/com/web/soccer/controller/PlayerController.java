@@ -13,6 +13,7 @@ import com.web.soccer.command.Receiver;
 import com.web.soccer.command.Sender;
 import com.web.soccer.costant.Constant;
 import com.web.soccer.domains.PlayerBean;
+import com.web.soccer.enums.Action;
 import com.web.soccer.serviceImpl.PlayerServiceImpl;
 import com.web.soccer.services.PlayerService;
 
@@ -25,18 +26,22 @@ public class PlayerController extends HttpServlet {
  
     
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(">>>>>>>>1.jsp에서 컨트롤러 들어옴");
+		System.out.println(">>>>>>>>player servlet 들어옴");
 		System.out.println(String.format("%s,%s,%s,%s"
 				,request.getParameter("playerId")
 				,request.getParameter("solar")
 				,request.getParameter("action")
 				,request.getParameter("page")));
 		
-		Receiver.init(request);
-		System.out.println("dff"+request.getServletPath());
-		System.out.println("receiver init() 끝남");
-		Sender.forward(request, response);
-	}
+			Receiver.init(request);
+			switch (Action.valueOf(request.getParameter("action").toUpperCase())) {
+			case CREATE : request.setAttribute("page", "login"); break;
+//			case LOGIN : request.setAttribute("page","main"); break;
+			default: break;
+		
+			}
+			Sender.forward(request, response);
+		}
 
 	
 

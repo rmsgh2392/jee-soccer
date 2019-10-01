@@ -12,19 +12,20 @@ public class Commander {
 				,request.getParameter("solar")
 				,request.getParameter("action")
 				,request.getParameter("page")));
-		Command cmd = null;
+			Command cmd = null;
 
 			switch (Action.valueOf(request.getParameter("action")//나누어주어서 어디서 nullpoint가 발생했는지 찾아주기 쉽다.
 					.toUpperCase())) {
-			case MOVE : cmd = new MoveCommand(request);
+			case CREATE : cmd = new CreateCommand(request); break;
+			case SEARCH : cmd = new SearchCommand();	break;
+			case UPDATE : break;
+			case DELETE : break;
+			case LOGIN :  cmd = new LoginCommand(request); break;
+			case MOVE :  cmd = new MoveCommand(request);break;
 //			리퀘스트와 명령어가 life style이 같고 유지해야된다.
-				break;
-			case SEARCH :cmd = new SearchCommand();
-				break;
-			case LOGIN : cmd = new LoginCommand(request); break;
 			}
 
-		return cmd;
+			return cmd;
 	
 	
 	}

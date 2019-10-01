@@ -8,7 +8,7 @@ public class Command implements Order{
 	protected String action,domains,page,view;
 	
 	@Override
-	public void exeucute() {
+	public void execute() {
 		
 		System.out.println(String.format("%s,%s,%s,%s"
 				,request.getParameter("playerId")
@@ -17,7 +17,7 @@ public class Command implements Order{
 				,request.getParameter("page")));
 		System.out.println("command execute진입");
 		
-		this.view = String.format(Constant.HOME_PATH,"facade",page);
+		this.view = String.format(Constant.HOME_PATH,"facade","main");
 	}
 
 

@@ -7,32 +7,25 @@ import com.web.soccer.domains.PlayerBean;
 import com.web.soccer.serviceImpl.PlayerServiceImpl;
 
 public class LoginCommand extends Command{
-	public LoginCommand(HttpServletRequest request){
-		System.out.println("5.로그인커맨드 들어옴");
-		System.out.println(String.format("%s,%s,%s,%s"
-				,request.getParameter("playerId")
-				,request.getParameter("solar")
-				,request.getParameter("action")
-				,request.getParameter("page")));
+	public LoginCommand(HttpServletRequest request) {
 		setRequest(request);
-		setDomains(request.getServletPath().substring(1,request.getServletPath().indexOf(".")));
 		setAction(request.getParameter("action"));
-		exeucute();
+		setDomains(request.getServletPath().substring(1,request.getServletPath().indexOf(".")));
+		this.execute();
+		
 	}
 	@Override
-	public void exeucute() {
-		String playerId = request.getParameter("playerId");
-		String solar = request.getParameter("solar");
+	public void execute() {
 		PlayerBean player = new PlayerBean();
-		player.setPlayerId(playerId);
-		player.setSolar(solar);
+		player.setPlayerId(request.getParameter("playerId"));
+		player.setSolar(request.getParameter("solar"));
 		player = PlayerServiceImpl.getInstance().login(player);
-		System.out.println("10.DB에서 로그인 커맨드로 전달된 로그인 객체는 : \n"+player.toString());
-		if(player.getPlayerId() != null) {
-			setPage(request.getParameter("page"));
+		if(player.getPlayerId()==null) {
+			setPage("login");
+			this.view = String.format(Constant.HOME_PATH,"facade",page);
 		}else {
-			setPage("fail");
+			setPage(request.getParameter("page"));
+			this.view = String.format(Constant.HOME_PATH,domains,page);
 		}
-		super.exeucute();
 	}
 }

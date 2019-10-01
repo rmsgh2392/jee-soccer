@@ -14,5 +14,6 @@ public interface PlayerDAO {
 	//테스트
 	public List<PlayerBean> selectByMany(PlayerBean param);
 	public List<PlayerBean> selectByBackNo(PlayerBean param);
+	public boolean insertPlayer(PlayerBean param);
 	
 }

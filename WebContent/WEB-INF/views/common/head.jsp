@@ -12,3 +12,5 @@
 </head>
 <body>
 <div class="wrapper">
+<div></div> <div></div> <div></div>
+<div></div> 

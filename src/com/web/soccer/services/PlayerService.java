@@ -17,5 +17,6 @@ public interface PlayerService {
 //	수원팀(ID: K02)키가 170 이상 선수
 //	 이면서 성이 고씨인 선수 ,팀아이디 ,키 , 플레이어네임
 	public List<PlayerBean> findByTeamIdHeightName(PlayerBean param);
-	
+//	회원가입
+	public boolean join(PlayerBean param);
 }
