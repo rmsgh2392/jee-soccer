@@ -4,4 +4,3 @@
 <script>
 location.assign('<%=request.getContextPath()%>/facade.do');
 </script>
-<!-- aa -->
