@@ -11,6 +11,4 @@
 	<input type="hidden" name="page" value="5_find_by_teamid_height_name"/>
 </form>
 <!-- 5.번 결과 -->
-<h1>팀 아이디 ${team.teamId}</h1>
-<h2>키 ${team.height}</h2>
-<h3>선수이름 ${team.playerName}</h3>
+

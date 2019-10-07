@@ -5,6 +5,9 @@ var app = (()=>{
 			playerService.join(ctx);
 			playerService.moveJoin(ctx);
 			playerService.backJoin(ctx);
+			playerService.searchPosition(ctx);
+			playerService.backSearch(ctx);
+			
 			
 		}
 	};
@@ -41,6 +44,7 @@ var playerService=(()=>{
 				}else{
 					alert('입력한 아이디'+$('#id').val());
 					$('#login_form').attr('action',ctx+'/player.do');
+					/*$('#login_form').attr('method','POST');*/
 					$('#login_form').submit();
 				}
 				
@@ -54,6 +58,7 @@ var playerService=(()=>{
 						alert('필수 값이 없음');
 					}else{
 						$('#join_form').attr('action',ctx+'/player.do');
+						$('#join_form').attr('method','POST');
 						$('#join_form').submit();
 						
 						
@@ -70,7 +75,20 @@ var playerService=(()=>{
 			$('#a_back').click(()=>{
 				location.assign(ctx+'/facade.do?action=move&page=login');
 			});
+		},
+		searchPosition : (ctx)=>{
+			$('#btn2').click(()=>{
+				alert('로그인 홈 들어옴');
+				location.assign(ctx+'/player.do?action=search&page=2_position_r');
+			});
+		},
+		backSearch : (ctx) =>{
+			$('#back_search').click(()=>{
+				alert('뒤로가쉴??');
+				location.assign(ctx+'/player.do?action=search&page=2_positions_q');
+			});
 		}
+		
 	};
 })();
 

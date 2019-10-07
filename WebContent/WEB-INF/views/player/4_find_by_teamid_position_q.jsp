@@ -10,7 +10,5 @@
 	<input type="hidden" name="action" value="player"/>
 	<input type="hidden" name="page" value="4_find_by_teamid_position"/>
 </form>
-
 <!-- 4번 결과  -->
-<h1>파인드 인덱스 들어옴</h1>
-해당 ID가 ${players.teamId} 팀의 포지션${players.position}이 일치하는 선수는 홍길동입니다.
+
